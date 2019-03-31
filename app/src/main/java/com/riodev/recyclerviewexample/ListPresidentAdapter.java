@@ -1,8 +1,10 @@
 package com.riodev.recyclerviewexample;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,10 @@ public class ListPresidentAdapter extends RecyclerView.Adapter<ListPresidentAdap
 
     public ListPresidentAdapter(Context context) {
         this.context = context;
+    }
+
+    public Context getContext() {
+        return context;
     }
 
     public void setContext(Context context) {
@@ -43,13 +49,23 @@ public class ListPresidentAdapter extends RecyclerView.Adapter<ListPresidentAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ListPresidentAdapter.ViewHolder viewHolder, final int i) {
         viewHolder.tvName.setText(getListPresident().get(i).getName());
         viewHolder.tvDescription.setText(getListPresident().get(i).getDescription());
         Glide.with(context)
                 .load(Integer.valueOf(getListPresident().get(i).getPhoto()))
                 .apply(new RequestOptions().override(60,60))
                 .into(viewHolder.ivPhoto);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DetailPresidentActivity.class);
+                intent.putExtra("PRESIDENT", getListPresident().get(i));
+                Log.e("Title", getListPresident().get(i).getName());
+                getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

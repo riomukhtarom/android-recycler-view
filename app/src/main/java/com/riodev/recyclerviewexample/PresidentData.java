@@ -13,15 +13,6 @@ public class PresidentData {
             {"Jokowi", "Pemimpin sederhana,bersih, dan merakyat, itulah hal yang banyak melekat pada sosok presiden Indonesia, Ir. H. Joko Widodo atau kerap disapa Jokowi", String.valueOf(R.drawable.jokowi)}
     };
 
-    public static long[] dataPhoto = new long[]{
-            R.drawable.sukarno,
-            R.drawable.suharto,
-            R.drawable.habibie,
-            R.drawable.gusdur,
-            R.drawable.megawati,
-            R.drawable.susilo,
-            R.drawable.jokowi,
-    };
 
     public static ArrayList<President> getListData(){
         ArrayList<President> list = new ArrayList<>();
